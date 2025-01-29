@@ -53,25 +53,39 @@ class Program
             }
         }
         return scriptures;
+        static Reference ParseReference(string referenceText)
+{
+    int colonIndex = referenceText.IndexOf(':');
+
+    // Check if ':' exists in the referenceText
+    if (colonIndex == -1)
+    {
+        throw new FormatException($"Invalid scripture reference format: {referenceText}");
     }
 
-    static Reference ParseReference(string referenceText)
+    string bookAndChapter = referenceText.Substring(0, colonIndex); // Extract "John 3"
+    string versePart = referenceText.Substring(colonIndex + 1);     // Extract "16"
+
+    int spaceIndex = bookAndChapter.LastIndexOf(' ');
+    if (spaceIndex == -1)
     {
-        int spaceIndex = referenceText.LastIndexOf(' ');
-        string book = referenceText.Substring(1, spaceIndex);
-        string chapterVerse = referenceText.Substring(spaceIndex + 1);
+        throw new FormatException($"Invalid book and chapter format: {bookAndChapter}");
+    }
 
-        string[] parts = chapterVerse.Split(':');
-        int chapter = int.Parse(parts[0]);
-        string[] verseParts = parts[1].Split('-');
+    string book = bookAndChapter.Substring(0, spaceIndex); // Extract "John"
+    int chapter = int.Parse(bookAndChapter.Substring(spaceIndex + 1)); // Extract "3"
 
-        if (verseParts.Length == 1)
-        {
-            return new Reference(book, chapter, int.Parse(verseParts[0]));
-        }
-        else
-        {
-            return new Reference(book, chapter, int.Parse(verseParts[0]), int.Parse(verseParts[1]));
-        }
+    if (versePart.Contains('-'))
+    {
+        string[] verseRange = versePart.Split('-');
+        int startVerse = int.Parse(verseRange[0]);
+        int endVerse = int.Parse(verseRange[1]);
+
+        return new Reference(book, chapter, startVerse, endVerse);
+    }
+    else
+    {
+        int verse = int.Parse(versePart);
+        return new Reference(book, chapter, verse);
     }
 }
