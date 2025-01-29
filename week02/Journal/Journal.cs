@@ -4,11 +4,11 @@ using System.IO;
 
 public class Journal
 {
-    private List<Entry> _entries;  // Correction : List avec "L" majuscule
+    private List<Entry> _entries; 
 
     public Journal()
     {
-        _entries = new List<Entry>(); // Initialisation de la liste
+        _entries = new List<Entry>(); 
     }
 
     public void AddEntry(Entry newEntry)
@@ -30,7 +30,7 @@ public class Journal
         {
             foreach (var entry in _entries)
             {
-                writer.WriteLine($"{entry.Date}|{entry.Prompt}|{entry.Response}");  // Séparateur "|"
+                writer.WriteLine($"{entry.Date}|{entry.Prompt}|{entry.Response}");  
             }
         }
         Console.WriteLine("Journal saved successfully.");
@@ -40,8 +40,7 @@ public class Journal
     {
         if (File.Exists(fileName))
         {
-            _entries.Clear();  // On vide la liste avant de charger
-
+            _entries.Clear(); 
             string[] lines = File.ReadAllLines(fileName);
             foreach (var line in lines)
             {

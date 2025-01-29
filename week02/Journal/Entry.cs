@@ -6,7 +6,7 @@ public class Entry
     public string Prompt { get; set; }
     public string Response { get; set; }
 
-    // Constructeur pour initialiser une entrée
+ 
     public Entry(string date, string prompt, string response)
     {
         Date = date;
