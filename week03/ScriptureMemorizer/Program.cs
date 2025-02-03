@@ -7,7 +7,7 @@ class Program
 {
     static void Main()
     {
-        // Load scriptures from a file
+    
         var scriptures = LoadScripturesFromFile("scriptures.txt");
 
         if (scriptures.Count == 0)
@@ -16,7 +16,7 @@ class Program
             return;
         }
 
-        // Randomly select a scripture
+ 
         var random = new Random();
         var selectedScripture = scriptures[random.Next(scriptures.Count)];
 
@@ -47,7 +47,7 @@ class Program
         }
     }
 
-    // Load scriptures from a file
+
     static List<Scripture> LoadScripturesFromFile(string filePath)
     {
         var scriptures = new List<Scripture>();
@@ -74,7 +74,7 @@ class Program
         return scriptures;
     }
 
-    // Parse reference (handles single and multi-verse references)
+
     static Reference ParseReference(string referenceText)
     {
         var referenceParts = referenceText.Split(':');
