@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 
-// Classe Comment pour stocker les commentaires d'une vidéo
 class Comment
 {
     public string CommenterName { get; set; }

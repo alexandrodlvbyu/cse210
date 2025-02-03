@@ -1,9 +1,9 @@
-// Classe Video pour stocker les informations sur une vidéo et ses commentaires
+
 class Video
 {
     public string Title { get; set; }
     public string Author { get; set; }
-    public int Length { get; set; } // en secondes
+    public int Length { get; set; } 
     private List<Comment> comments;
     
     public Video(string title, string author, int length)

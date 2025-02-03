@@ -24,7 +24,7 @@ public class Order
             totalCost += product.CalculateTotalCost();
         }
 
-        // Add shipping cost based on customer's location
+      
         double shippingCost = customer.LivesInUSA() ? USA_SHIPPING_COST : INTERNATIONAL_SHIPPING_COST;
         totalCost += shippingCost;
 

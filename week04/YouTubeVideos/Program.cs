@@ -1,9 +1,9 @@
-// Classe principale du programme
+
 class Program
 {
     static void Main()
     {
-        // Création de vidéos
+       
         List<Video> videos = new List<Video>();
         
         Video video1 = new Video("Introduction to C#", "CodeAcademy", 600);
@@ -25,7 +25,7 @@ class Program
         videos.Add(video2);
         videos.Add(video3);
         
-        // Affichage des informations des vidéos
+    
         foreach (var video in videos)
         {
             video.DisplayVideoInfo();
