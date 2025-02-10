@@ -1,6 +1,6 @@
 class ListingActivity : Activity
 {
-    private List<string> _prompts = new() { "Who do you appreciate?", "What are your strengths?", "Who have you helped this week?" };
+    private List<string> _prompts = new() { "Who do  you appreciate?", "What are your strengths?", "Who have you helped this week?" };
     private int _count;
     
     public ListingActivity()
