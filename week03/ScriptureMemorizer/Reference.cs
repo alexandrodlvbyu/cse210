@@ -1,25 +1,27 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
 class Reference
 {
-    public string Book { get; }
-    public int Chapter { get; }
-    public int Verse { get; }
-    public int? EndVerse { get; }
+    private string _book;
+    private int _chapter;
+    private int _verse;
+    private int? _endVerse;
 
-    public Reference(string book, int chapter, int verse, int? endVerse = null)
+    public Reference(string book, int chapter, int verse)
     {
-        Book = book;
-        Chapter = chapter;
-        Verse = verse;
-        EndVerse = endVerse;
+        _book = book;
+        _chapter = chapter;
+        _verse = verse;
+    }
+
+    public Reference(string book, int chapter, int startVerse, int endVerse)
+    {
+        _book = book;
+        _chapter = chapter;
+        _verse = startVerse;
+        _endVerse = endVerse;
     }
 
     public string GetDisplayText()
     {
-        return EndVerse == null ? $"{Book} {Chapter}:{Verse}" : $"{Book} {Chapter}:{Verse}-{EndVerse}";
+        return _endVerse.HasValue ? $"{_book} {_chapter}:{_verse}-{_endVerse}" : $"{_book} {_chapter}:{_verse}";
     }
 }

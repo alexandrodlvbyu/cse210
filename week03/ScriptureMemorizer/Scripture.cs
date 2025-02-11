@@ -2,6 +2,7 @@ class Scripture
 {
     private Reference _reference;
     private List<Word> _words;
+    private Random _random = new Random();
 
     public Scripture(Reference reference, string text)
     {
@@ -9,25 +10,24 @@ class Scripture
         _words = text.Split(' ').Select(word => new Word(word)).ToList();
     }
 
-    public void HideRandomWords(int numberToHide)
-    {
-        Random random = new Random();
-        int hiddenCount = 0;
-
-        while (hiddenCount < numberToHide && _words.Any(word => !word.IsHidden()))
-        {
-            int index = random.Next(_words.Count);
-            if (!_words[index].IsHidden())
-            {
-                _words[index].Hide();
-                hiddenCount++;
-            }
-        }
-    }
-
     public string GetDisplayText()
     {
-        return _reference.GetDisplayText() + " - " + string.Join(" ", _words.Select(w => w.GetDisplayText()));
+        return $"{_reference.GetDisplayText()}\n{string.Join(" ", _words.Select(w => w.GetDisplayText()))}";
+    }
+
+    public void HideRandomWords(int numberToHide)
+    {
+        var visibleWords = _words.Where(word => !word.IsHidden()).ToList();
+        
+        if (visibleWords.Count == 0)
+            return;
+        
+        for (int i = 0; i < numberToHide && visibleWords.Count > 0; i++)
+        {
+            int index = _random.Next(visibleWords.Count);
+            visibleWords[index].Hide();
+            visibleWords.RemoveAt(index);
+        }
     }
 
     public bool IsCompletelyHidden()
